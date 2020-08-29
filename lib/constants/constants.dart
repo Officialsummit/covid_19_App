@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Constants {
   TextStyle kHeaderText = TextStyle(
@@ -12,5 +14,24 @@ class Constants {
     fontFamily: 'Raleway',
     fontSize: 30,
     fontWeight: FontWeight.bold,
+  );
+
+  TextStyle kInfectedText = GoogleFonts.roboto(
+    fontSize: 40.0,
+    color: Colors.red,
+  );
+  TextStyle kAllCountryText = GoogleFonts.roboto(
+    fontSize: 20,
+    color: Colors.white,
+  );
+
+  InputDecoration kTextFieldDecoration = InputDecoration(
+    filled: true,
+    suffixIcon: Icon(
+      FontAwesomeIcons.searchLocation,
+      color: Colors.black26,
+    ),
+    fillColor: Color.fromRGBO(237, 241, 245, 1),
+    hintText: 'search your country... ',
   );
 }

@@ -1,5 +1,6 @@
 import 'package:covid_19/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HeaderWidget extends StatelessWidget {
   final String headerText;
@@ -33,9 +34,23 @@ class HeaderWidget extends StatelessWidget {
         children: [
           image,
           Expanded(
-            child: Text(
-              headerText,
-              style: constants.kHeaderText,
+            child: Column(
+              children: [
+                Text(
+                  'The COVID-19 App',
+                  style: GoogleFonts.roboto(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white),
+                ),
+                SizedBox(
+                  height: 30.0,
+                ),
+                Text(
+                  headerText,
+                  style: constants.kHeaderText,
+                ),
+              ],
             ),
           ),
           InkWell(
