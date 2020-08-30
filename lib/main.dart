@@ -13,6 +13,7 @@ class CovidApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
+        splashColor: Colors.greenAccent,
       ),
       debugShowCheckedModeBanner: false,
       home: HomePage(),

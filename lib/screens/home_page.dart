@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:covid_19/constants/constants.dart';
 import 'package:covid_19/screens/all_country_screen.dart';
+import 'package:covid_19/screens/precaution_symptioms_screen.dart';
 import 'package:covid_19/widgets/header_widget.dart';
 import 'package:covid_19/widgets/worldDataWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as https;
 
 Map worldData;
@@ -38,11 +40,20 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             HeaderWidget(
+              titleText: Text(
+                'The COVID-19 App',
+                style: GoogleFonts.roboto(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.white),
+              ),
               image: Image.asset("images/doc_sitting_new.png"),
               headerText: "STAY HOME \n     STAY SAFE",
               onTapped: () {
-                print(worldData['deaths']);
-                //TODO Go to Precaution Symptomp page
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PrecautionSymptomsPage()));
               },
             ),
             SizedBox(
@@ -108,7 +119,39 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                     'All Country Details',
                     textAlign: TextAlign.center,
-                    style: constants.kAllCountryText,
+                    style: constants.kAllButtonText,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Color(0xFF193EA7),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PrecautionSymptomsPage()));
+              },
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0,
+                    vertical: 10.0,
+                  ),
+                  height: 50,
+                  width: 250,
+                  child: Text(
+                    'How to Avoid Covid ?',
+                    textAlign: TextAlign.center,
+                    style: constants.kAllButtonText,
                   ),
                   decoration: BoxDecoration(
                     color: Color(0xFF193EA7),

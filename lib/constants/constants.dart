@@ -20,7 +20,7 @@ class Constants {
     fontSize: 40.0,
     color: Colors.red,
   );
-  TextStyle kAllCountryText = GoogleFonts.roboto(
+  TextStyle kAllButtonText = GoogleFonts.roboto(
     fontSize: 20,
     color: Colors.white,
   );
@@ -34,4 +34,6 @@ class Constants {
     fillColor: Color.fromRGBO(237, 241, 245, 1),
     hintText: 'search your country... ',
   );
+
+  Color kButtonColor = Color(0xFF193EA7);
 }
