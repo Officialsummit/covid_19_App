@@ -12,7 +12,7 @@ class HeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Constants constants = new Constants();
     return Container(
-      padding: const EdgeInsets.only(left: 20, top: 30),
+      padding: const EdgeInsets.only(left: 20, top: 50),
       height: 240,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -35,6 +35,7 @@ class HeaderWidget extends StatelessWidget {
           image,
           Expanded(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 titleText,
                 SizedBox(

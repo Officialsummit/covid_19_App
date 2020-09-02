@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:covid_19/constants/constants.dart';
 import 'package:covid_19/screens/all_country_screen.dart';
+import 'package:covid_19/screens/list_country_page.dart';
 import 'package:covid_19/screens/precaution_symptioms_screen.dart';
 import 'package:covid_19/widgets/header_widget.dart';
 import 'package:covid_19/widgets/worldDataWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as https;
@@ -89,8 +91,9 @@ class _HomePageState extends State<HomePage> {
                     worldData: worldData,
                   )
                 : Center(
-                    child: CircularProgressIndicator(
-                      backgroundColor: Colors.redAccent,
+                    child: SpinKitWave(
+                      color: constants.kButtonColor,
+                      size: 30,
                     ),
                   ),
             SizedBox(
@@ -115,9 +118,9 @@ class _HomePageState extends State<HomePage> {
                     vertical: 10.0,
                   ),
                   height: 50,
-                  width: 250,
+                  width: 200,
                   child: Text(
-                    'All Country Details',
+                    'Search Your Country',
                     textAlign: TextAlign.center,
                     style: constants.kAllButtonText,
                   ),
@@ -131,7 +134,40 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
+            ),
+            Center(
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    //todo nav to all country details list
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CountryListPage()));
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(5),
+                  child: Text(
+                    'All Country Details',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                  height: 40,
+                  width: 200,
+                  decoration: BoxDecoration(
+                    color: constants.kButtonColor,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             InkWell(
               onTap: () {

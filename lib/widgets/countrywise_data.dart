@@ -31,10 +31,14 @@ class CountryWiseData extends StatelessWidget {
                   SizedBox(
                     width: 5,
                   ),
-                  Image.network(
-                    countrywiseData['countryInfo']['flag'],
-                    height: 140,
-                    width: 100,
+                  Card(
+                    elevation: 10.0,
+                    child: Image.network(
+                      countrywiseData['countryInfo']['flag'],
+                      height: 140,
+                      width: 100,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ],
               ),
@@ -100,7 +104,7 @@ class StatsDataCard extends StatelessWidget {
               style: TextStyle(fontSize: 13, color: Colors.red),
             ),
             Text(
-              "Today's Deaths : ${data['recovered'].toString()}",
+              "Today's Deaths : ${data['todayDeaths'].toString()}",
               style: TextStyle(fontSize: 13, color: Colors.red),
             ),
             Text(
