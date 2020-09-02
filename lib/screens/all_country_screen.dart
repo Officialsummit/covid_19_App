@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:covid_19/constants/constants.dart';
 import 'package:covid_19/widgets/countrywise_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
@@ -17,6 +18,8 @@ Map countryData;
 
 class _AllCountryDetailScreenState extends State<AllCountryDetailScreen> {
   Constants constants = Constants();
+  bool _showSpinkit = false;
+  TextEditingController _searchedCountry = TextEditingController();
 
   getCountryData() async {
     var response =
@@ -66,12 +69,20 @@ class _AllCountryDetailScreenState extends State<AllCountryDetailScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Center(
-                        child: TextField(
-                          onChanged: (value) {
-                            userInput = value;
-                            print(userInput);
+                        child: Focus(
+                          onFocusChange: (isfocussed) {
+                            if (isfocussed) {
+                              _showSpinkit = true;
+                            } else
+                              _showSpinkit = false;
                           },
-                          decoration: constants.kTextFieldDecoration,
+                          child: TextField(
+                            controller: _searchedCountry,
+                            onChanged: (value) {
+                              userInput = value;
+                            },
+                            decoration: constants.kTextFieldDecoration,
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -83,13 +94,27 @@ class _AllCountryDetailScreenState extends State<AllCountryDetailScreen> {
                       SizedBox(
                         height: 10,
                       ),
+                      _showSpinkit == true
+                          ? Center(
+                              child: SpinKitCubeGrid(
+                                size: 30.0,
+                                color: constants.kButtonColor,
+                              ),
+                            )
+                          : Container(),
+                      SizedBox(
+                        height: 20.0,
+                      ),
                       Center(
                         child: InkWell(
                           onTap: () {
+                            FocusScope.of(context).unfocus();
                             setState(() {
+                              _showSpinkit = false;
                               userInput != null
                                   ? getCountryData()
                                   : Container();
+                              _searchedCountry.clear();
                             });
                           },
                           child: Container(
